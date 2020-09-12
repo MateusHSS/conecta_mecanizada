@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('employee.home');
 });
+
+Route::get('/checklist', function () {
+    return view('employee.checklists.checklist');
+})->name('employee.check');
