@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Checklist;
+use App\EquipmentModel;
 use Illuminate\Http\Request;
 
 class ChecklistController extends Controller
@@ -81,5 +82,12 @@ class ChecklistController extends Controller
     public function destroy(Checklist $checklist)
     {
         //
+    }
+
+    public function new(EquipmentModel $model)
+    {
+        $items = Checklist::checklist_items()->get();
+
+        dd($items);
     }
 }

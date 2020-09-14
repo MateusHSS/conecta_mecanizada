@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function user_type(){
         return $this->belongsTo(UserType::class);
     }
+
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 }

@@ -15,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('employee.home');
-});
+})->name('home');
 
 Route::get('/checklist', function () {
     return view('employee.checklists.checklist');
 })->name('employee.check');
+
+Route::prefix('employee')->group(function () {
+    Route::resource('/request', 'RequestController');
+    Route::get('/checklist/{model}', 'ChecklistController@new')->name('checklist.new');
+    Route::resource('/checklist', 'ChecklistController');
+});

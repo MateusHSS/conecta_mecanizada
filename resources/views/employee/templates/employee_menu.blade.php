@@ -1,42 +1,69 @@
+@php
+    use App\EquipmentModel;
+
+    $models = EquipmentModel::all();
+@endphp
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('vli.ico') }}">
     <title>Conecta Mecanizada - Funcionário</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
-    header,
-    main,
-    footer {
-        padding-left: 300px;
-    }
-
-    @media only screen and (max-width : 992px) {
-
         header,
         main,
         footer {
-            padding-left: 0;
+            padding-left: 300px;
         }
-    }
+
+        @media only screen and (max-width : 992px) {
+
+            header,
+            main,
+            footer {
+                padding-left: 0;
+            }
+        }
+
+        .collapsible-header {
+            color: white;
+        }
     </style>
 </head>
 
 <body>
-    <ul id="slide-out" class="sidenav sidenav-fixed">
+    <!-- Dropdown Structure -->
+    <ul id="user_menu" class="dropdown-content">
+        <li><a href="#!" class="red-text">Sair<i class="material-icons right">exit_to_app</i></a></li>
+    </ul>
+
+    <header>
+        <nav>
+            <div class="nav-wrapper blue darken-2">
+                <ul class="right hide-on-med-and-down">
+                    <!-- Dropdown Trigger -->
+                    <li><a class="dropdown-trigger" data-target="user_menu">Usuário<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <ul id="slide-out" class="sidenav sidenav-fixed blue darken-2">
         <li>
             <div class="user-view">
-                <div class="background">
-                    <img src="images/office.jpg">
+                <div class="background white">
+                    <img src="{{ asset('img/1.jpg') }}" class="responsive-img">
                 </div>
-                <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
-                <a href="#name"><span class="white-text name">John Doe</span></a>
-                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                <img class="circle" src="{{ asset('img/logo_fundo_branco.png') }}">
+                <span class="white-text name">Usuário</span>
+                <span class="white-text email">user@email.com</span>
             </div>
         </li>
         <ul class="collapsible">
@@ -50,19 +77,16 @@
                                     <div class="collapsible-header"><i class="material-icons left">arrow_right</i>Novo</div>
                                     <div class="collapsible-body">
                                         <ul>
-
-                                        
-                                            <li><a href="{{ route('employee.check') }}">Modelo 1</a></li>
-                                            <li><a href="">Modelo 1</a></li>
-                                            <li><a href="">Modelo 1</a></li>
-                                            <li><a href="">Modelo 1</a></li>
-                                            <li><a href="">Modelo 1</a></li>
+                                            @foreach ($models as $model)
+                                                {{-- <li><a href="{{ route('checklist.new', ['model' => $model->id]) }}">{{ $model->name }}</a></li> --}}
+                                                <li><a href="#">{{ $model->name }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href=""><i class="material-icons left">list</i>Concluídas</a></li>
+                        <li><a href="#"><i class="material-icons left">list</i>Concluídas</a></li>
                     </ul>
                 </div>
             </li>
@@ -70,14 +94,10 @@
                 <div class="collapsible-header"><i class="material-icons left drop">arrow_right</i>Solicitações</div>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a href=""><i class="material-icons left">add</i>Nova solicitação</a></li>
-                        <li><a href=""><i class="material-icons left">list</i>Acompanhar</a></li>
+                        <li><a href="{{ route('request.create') }}"><i class="material-icons left">add</i>Nova solicitação</a></li>
+                        <li><a href="{{ route('request.index') }}"><i class="material-icons left">list</i>Acompanhar</a></li>
                     </ul>
                 </div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
             </li>
         </ul>
     </ul>
@@ -97,6 +117,9 @@
         $(document).ready(function() {
             $('.sidenav').sidenav();
             $('.collapsible').collapsible();
+            $('.dropdown-trigger').dropdown({
+                coverTrigger: false
+            });
         });
     </script>
 

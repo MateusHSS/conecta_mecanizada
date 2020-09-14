@@ -16,7 +16,7 @@ class Checklist extends Model
         return $this->belongsTo(Employee::class);
     }
 
-    public function checklist_tems(){
+    public function checklist_items(){
         return $this->hasMany(ChecklistItem::class);
     }
 
