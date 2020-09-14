@@ -22,7 +22,9 @@ Route::get('/checklist', function () {
 })->name('employee.check');
 
 Route::prefix('employee')->group(function () {
-    Route::resource('/request', 'RequestController');
-    Route::get('/checklist/{model}', 'ChecklistController@new')->name('checklist.new');
-    Route::resource('/checklist', 'ChecklistController');
+    Route::resource('/request', 'RequestController')->names('employee.request');
+    Route::resource('/section', 'SectionController')->names('employee.section');
+    Route::get('/checklist/{model}', 'ChecklistController@new')->name('employee.checklist.new');
+    Route::resource('/checklist', 'ChecklistController')->names('employee.checklist');
+    Route::resource('/checklist-item', 'ChecklistItemController')->names('employee.checklistitem');
 });

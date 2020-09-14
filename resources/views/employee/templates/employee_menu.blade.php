@@ -74,7 +74,7 @@
                         <li>
                             <ul class="collapsible">
                                 <li>
-                                    <div class="collapsible-header"><i class="material-icons left">arrow_right</i>Novo</div>
+                                    <div class="collapsible-header black-text"><i class="material-icons left">arrow_right</i>Novo</div>
                                     <div class="collapsible-body">
                                         <ul>
                                             @foreach ($models as $model)
@@ -94,8 +94,8 @@
                 <div class="collapsible-header"><i class="material-icons left drop">arrow_right</i>Solicitações</div>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a href="{{ route('request.create') }}"><i class="material-icons left">add</i>Nova solicitação</a></li>
-                        <li><a href="{{ route('request.index') }}"><i class="material-icons left">list</i>Acompanhar</a></li>
+                        <li><a href="{{ route('employee.request.create') }}"><i class="material-icons left">add</i>Nova solicitação</a></li>
+                        <li><a href="{{ route('employee.request.index') }}"><i class="material-icons left">list</i>Acompanhar</a></li>
                     </ul>
                 </div>
             </li>

@@ -17,7 +17,7 @@
                 <h4>Nova solicitação</h4>
             </div>
             <div class="row">
-                <form class="col s12" action="{{ route('request.store') }}" method="post">
+                <form class="col s12" action="{{ route('employee.request.store') }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="input-field col l2">

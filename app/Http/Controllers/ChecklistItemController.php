@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ChecklistItem;
+use App\Section;
 use Illuminate\Http\Request;
 
 class ChecklistItemController extends Controller
@@ -35,7 +36,14 @@ class ChecklistItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $checklistitem = new ChecklistItem;
+
+        $checklistitem->description = $request->description;
+        $checklistitem->section_id = Section::find($request->section)->id;
+
+        $checklistitem->save();
+
+        return redirect()->route('home');
     }
 
     /**

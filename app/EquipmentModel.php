@@ -8,8 +8,12 @@ class EquipmentModel extends Model
 {
     protected $table = 'equipment_models';
 
-    public function checklist(){
-        return $this->hasOne(Checklist::class);
+    // public function checklist(){
+    //     return $this->hasOne(Checklist::class);
+    // }
+
+    public function checklist_model(){
+        return $this->hasOne(ChecklistModel::class)
     }
 
     public function equipments(){
